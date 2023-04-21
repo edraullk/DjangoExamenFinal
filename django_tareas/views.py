@@ -234,3 +234,28 @@ def publicarComentario(request):
     return JsonResponse({
         'resp':'ok'
     })
+
+def descargarReporteUsuarios(request):
+    """
+    PREGUNTA 1
+    En esta funcion debe generar un pdf con utilizando la libreria reportlab
+    Este reporte debe contener la informacion de todos los usuarios a excepcion
+    de la contraseña y debe mostrar tambien la cantidad de tareas de cada 
+    usuarios (Solo la cantidad no es necesario la descripcion de todas)
+
+    Usuarios Nombre Apellido
+    Username        Fecha de ingreso       Numero de celular
+    Cantidad de tareas              Tipo de usuario
+
+    Agregar una descripcion de cabecera de la siguiente forma
+
+    Logo de DJANGO      Titulo: Reporte de usuarios     Logo de PUCP
+    Fecha de creacion del reporte
+    Cantidad de usuarios
+    Usuario que genera el reporte
+    Tipo de usuarios que genera el reporte
+    
+    """
+    nombreArchivo = 'reporteUsuarios.pdf'
+    reporteUsuarios=open(nombreArchivo,'rb')
+    return FileResponse(reporteUsuarios,as_attachment=True)

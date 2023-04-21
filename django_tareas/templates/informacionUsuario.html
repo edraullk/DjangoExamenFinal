@@ -145,9 +145,9 @@
                             <tr>
                                 <td>{{ tarea.fechaInicio|date:'d-m-Y' }}</td>
                                 <td>{{ tarea.fechaFin|date:'d-m-Y' }}</td>
-                                <td>{{ tarea.estadoTarea }}</td>
+                                <td id="estado{{ tarea.id }}">{{ tarea.estadoTarea }}</td>
                                 <td><button data-bs-toggle="modal" data-bs-target="#detalleTarea" id="{{ tarea.id }}" class="btn btn-info" onclick="capturarInformacionTarea(this.id)"><i class="fa-solid fa-eye"></i></button></td>
-                                <td><a class="btn btn-warning" href="#"><i class="fa-solid fa-forward-step"></i></a></td>
+                                <td><button class="btn btn-warning" id="finalizar{{ tarea.id }}" onclick="finalizarTarea(this.id)"><i class="fa-solid fa-forward-step"></i></button></td>
                                 <td><a class="btn btn-danger" href="{% url 'django_tareas:eliminarTarea' tarea.id usuarioInfo.id %}"><i class="fa-solid fa-trash"></i></a></td>
                             </tr>
                             {% endfor %}
