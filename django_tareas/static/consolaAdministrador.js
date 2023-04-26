@@ -20,6 +20,39 @@ function editarUsuario(idEditar)
     Colocarlos como solo lectura (propiedad readonly en el tag HTML)
     
     */
+    fetch(`/editarUsuario?idUser=${idEditar}`)
+        .then(response => response.json())
+        .then(data => {
+            let nombreUsuario = document.getElementById('nombreUsuario')
+            let apellidoUsuario = document.getElementById('apellidoUsuario')
+            let emailUsuario = document.getElementById('emailUsuario')
+            let fechaIngresoUsuario = document.getElementById('fechaIngresoUsuario')
+            let nroCelular = document.getElementById('nroCelular')
+            let profesionUsuario = document.getElementById('profesionUsuario')
+
+            nombreUsuario.value = data.nombreUsuario
+            apellidoUsuario.value = data.apellidoUsuario
+            emailUsuario.value = data.emailUsuario
+            fechaIngresoUsuario.value = data.fechaIngresoUsuario
+            nroCelular.value = data.nroCelular
+            profesionUsuario.value = data.profesionUsuario
+           //console.log(nombreUsuario)
+        })
+
+    // fetch(`/editarUsuario?idUser=${idEditar}`)
+    // .then(response => response.json())
+    // .then(data => {
+    //     let nombreUsuario = document.getElementById('nombreUsuario')
+    //     let apellidoUsuario = document.getElementById('apellidoUsuario')
+    //     let emailUsuario = document.getElementById('emailUsuario')
+    //     let fechaIngresoUsuario = document.getElementById('fechaIngresoUsuario')
+    //     let nroCelular = document.getElementById('nroCelular')
+    //     let profesionUsuario = document.getElementById('profesionUsuario')
+
+    //     nombreUsuario.value = data.nombreUsuario
+    //     apellidoUsuario.value = data.apellidoUsuario
+    //     emailUsuario.value = data.emailUsuario
+    // })
 }
 
 function actualizarUsuario()

@@ -9,6 +9,7 @@ urlpatterns = [
     path('cerrarSesion',views.cerrarSesion,name='cerrarSesion'),
     path('eliminarUsuario/<str:ind>',views.eliminarUsuario,name='eliminarUsuario'),
     path('verUsuario/<str:ind>',views.verUsuario, name='verUsuario'),
+    path('editarUsuario',views.editarUsuario, name='editarUsuario'),
     path('nuevaTarea/<str:ind>', views.nuevaTarea, name='nuevaTarea'),
     path('devolverMensaje', views.devolverMensaje, name='devolverMensaje'),
     path('conseguirInfoTarea',views.conseguirInfoTarea,name='conseguirInfoTarea'),

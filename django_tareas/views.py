@@ -144,6 +144,19 @@ def conseguirInfoTarea(request):
         'comentariosTotales':comentariosTotales,
     })
 
+def editarUsuario(request):
+    print(request.GET)
+    idUser = request.GET.get('idUser')
+    usuarioSeleccionado = User.objects.get(id=idUser)
+    return JsonResponse({
+        'nombreUsuario':usuarioSeleccionado.first_name,
+        'apellidoUsuario':usuarioSeleccionado.last_name,
+        'emailUsuario':usuarioSeleccionado.email,
+        'fechaIngresoUsuario':datosUsuario.objects.get(user = usuarioSeleccionado).fechaIngreso.strftime("%d-%m-%Y"),
+        'nroCelular':datosUsuario.objects.get(user = usuarioSeleccionado).nroCelular,
+        'profesionUsuario':datosUsuario.objects.get(user = usuarioSeleccionado).profesionUsuario,
+    })
+
 def eliminarTarea(request,idTarea,idUsuario):
     tareasInformacion.objects.get(id=idTarea).delete()
     return HttpResponseRedirect(reverse('django_tareas:verUsuario', kwargs={'ind':idUsuario}))
@@ -319,6 +332,7 @@ def descargarReporteUsuarios(request):
         archivoPdf.drawString(lista_x[0] + 120, lista_y[1]-35, f'{usuario.fechaIngreso}')
         archivoPdf.drawString(lista_x[0] + 220, lista_y[1]-35, f'{usuario.nroCelular}')
         archivoPdf.drawString(lista_x[0] + 20, lista_y[1]-55, f'{tareasInformacion.objects.count()}')
+        #archivoPdf.drawString(lista_x[0] + 20, lista_y[1]-55, f'{tareasInformacion.objects.get(usuarioRelacionado = users).count()}')
         archivoPdf.drawString(lista_x[0] + 120, lista_y[1]-55, f'{usuario.tipoUsuario}')
         lista_y[0] = lista_y[0] - 60
         lista_y[1] = lista_y[1] - 60
